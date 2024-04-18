@@ -34,6 +34,7 @@ createApp({
       activeIndex: 0,
       activeClass: true,
       clock: null,
+      isRunRight: true,
     }
   },created() {
     clock = setInterval(() => {
@@ -63,13 +64,29 @@ createApp({
       }
     },
     stopPlay: function() {
-      if (clock === null) {
+      if (clock === null && !this.isRunRight) {
         clock = setInterval(() => {
           this.showNext()
-        }, 3000)
+        }, 3000);
+        this.isRunRight = true;
       } else {
         clearInterval(clock);
         clock = null;
+        this.isRunRight = false;
+      }
+    },
+    reverse: function() {
+      if (clock !== null && this.isRunRight) {
+        clearInterval(clock)
+        clock = setInterval(() => {
+          this.showPrev()
+        }, 3000);
+        this.isRunRight = false;
+      } else if (clock !== null && !this.isRunRight) {
+        clearInterval(clock)
+        clock = setInterval(() => {
+          this.showNext()
+        }, 3000);
       }
     }
   }
