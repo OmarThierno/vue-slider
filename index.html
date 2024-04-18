@@ -28,10 +28,13 @@
     <!-- Custom style -->
     <link rel="stylesheet" href="css/style.css" />
 
+    <!-- Vue JS  -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
     <title>JS Array Carousel with Objects</title>
   </head>
   <body>
-    <main>
+    <main id="app">
       <div class="container-fluid p-5">
         <div class="row text-center">
           <div class="col-12 p-3" id="my-before-carousel"></div>
@@ -47,36 +50,17 @@
                 <div class="my-carousel-item active" carousel-item="1">
                   <img
                     class="img-fluid"
-                    src="./img/01.webp"
-                    alt="Marvel's Spiderman Miles Morale picture"
+                    :src="images[activeIndex].image"
+                    :alt="images[activeIndex].title"
                   />
                   <div class="item-description px-3">
-                    <h2>Marvel's Spiderman Miles Morale</h2>
+                    <h2>{{ images[activeIndex].title }}</h2>
                     <p>
-                      Experience the rise of Miles Morales as the new hero
-                      masters incredible, explosive new powers to become his own
-                      Spider-Man.
+                      {{ images[activeIndex].text }}
                     </p>
                   </div>
                 </div>
                 <!-- /immagine 1 -->
-
-                <!-- immagine 2 -->
-                <div class="my-carousel-item" carousel-item="1">
-                  <img
-                    class="img-fluid"
-                    src="./img/02.webp"
-                    alt="Ratchet & Clank: Rift Apart"
-                  />
-                  <div class="item-description px-3">
-                    <h2>Ratchet & Clank: Rift Apart</h2>
-                    <p>
-                      Go dimension-hopping with Ratchet and Clank as they take
-                      on an evil emperor from another reality.
-                    </p>
-                  </div>
-                </div>
-                <!-- /immagine 2 -->
 
                 <!-- etc .... -->
               </div>
@@ -86,19 +70,15 @@
                   <span class="my-prev-hook"></span>
                 </div>
                 <!-- next -->
-                <div class="my-next position-absolute">
+                <div @click="showNext" class="my-next position-absolute">
                   <span class="my-next-hook"></span>
                 </div>
                 <!-- immagini interne -->
                 <img
+                  v-for="img in images"
                   class="img-fluid my-thumbnail active"
-                  src="./img/01.webp"
-                  alt="Thumbnail of Marvel's Spiderman Miles Morale picture"
-                />
-                <img
-                  class="img-fluid my-thumbnail"
-                  src="./img/02.webp"
-                  alt="Thumbnail of Ratchet & Clank: Rift Apart picture"
+                  :src="img.image"
+                  :alt="img.title"
                 />
                 <!-- etc ... -->
               </div>
@@ -116,5 +96,7 @@
         </div>
       </div>
     </main>
+
+    <script src="js/main.js"></script>
   </body>
 </html>
