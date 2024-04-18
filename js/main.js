@@ -32,16 +32,44 @@ createApp({
         },
       ],
       activeIndex: 0,
+      activeClass: true,
+      clock: null,
     }
   },created() {
-
+    clock = setInterval(() => {
+      this.showNext()
+    }, 3000)
   },
   methods: {
     showNext: function() {
-      if(this.activeIndex < this.images.length) {
+      if(this.activeIndex < this.images.length - 1) {
         this.activeIndex++;
       } else {
         this.activeIndex = 0;
+      }
+    },
+    showPrev: function() {
+      if(this.activeIndex > 0) {
+        this.activeIndex--;
+      } else {
+        this.activeIndex = this.images.length - 1;
+      }
+    },
+    showThumbnail: function(index) {
+      if(index === this.activeIndex) {
+        this.activeClass = true;
+      } else {
+        this.activeClass = false;
+      }
+    },
+    stopPlay: function() {
+      if (clock === null) {
+        clock = setInterval(() => {
+          this.showNext()
+        }, 3000)
+      } else {
+        clearInterval(clock);
+        clock = null;
       }
     }
   }

@@ -66,7 +66,7 @@
               </div>
               <div class="my-thumbnails position-relative">
                 <!-- prev -->
-                <div class="my-previous position-absolute">
+                <div @click="showPrev" class="my-previous position-absolute">
                   <span class="my-prev-hook"></span>
                 </div>
                 <!-- next -->
@@ -75,8 +75,9 @@
                 </div>
                 <!-- immagini interne -->
                 <img
-                  v-for="img in images"
-                  class="img-fluid my-thumbnail active"
+                  v-for="(img, index) in images"
+                  class="img-fluid my-thumbnail"
+                  :class="{'active': activeClass}"
                   :src="img.image"
                   :alt="img.title"
                 />
@@ -89,7 +90,7 @@
             <button id="my-order-button" class="btn btn-primary">
               Inverti l'ordine di scorrimento
             </button>
-            <button id="my-stop-button" class="btn btn-primary">
+            <button @click="stopPlay" id="my-stop-button" class="btn btn-primary">
               Interrompi / Fai ripartire lo scorrimento
             </button>
           </div>
