@@ -77,9 +77,10 @@
                 <img
                   v-for="(img, index) in images"
                   class="img-fluid my-thumbnail"
-                  :class="{'active': activeClass}"
+                  :class="{'active': activeIndex === index}"
                   :src="img.image"
                   :alt="img.title"
+                  @click="showThumbnail(index)"
                 />
                 <!-- etc ... -->
               </div>

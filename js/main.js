@@ -57,11 +57,7 @@ createApp({
       }
     },
     showThumbnail: function(index) {
-      if(index === this.activeIndex) {
-        this.activeClass = true;
-      } else {
-        this.activeClass = false;
-      }
+     this.activeIndex === index;
     },
     stopPlay: function() {
       if (clock === null && !this.isRunRight) {
@@ -87,7 +83,12 @@ createApp({
         clock = setInterval(() => {
           this.showNext()
         }, 3000);
+      } else if (clock === null && !this.isRunRight) {
+
       }
     }
   }
 }).mount('#app')
+
+// :class="(activeIndex === index) ? 'active : '' "
+// :class="{'active': activeClass}"
